@@ -10,11 +10,7 @@
   		<link rel="stylesheet" href="../css/login.css">
 		<link rel="stylesheet" href="../css/icomoon.css"/> 
   		<script src="../js/lib/jquery.min.js"></script>
-<<<<<<< HEAD
-  		<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
-=======
->>>>>>> 903180e9da764f0c4079d2ebdcc55331b581302f
-		
+  		<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>	
     </head>
     <body>
         <div class="container">
@@ -24,7 +20,6 @@
 					<h1><img class="logo" src="../images/Logo.png" /> <br /><span class="admin-text">ADMIN PANEL</span></h1>
 					<p class="float">
 						<label for="login"><i class="icon-user"></i>Club Venue</label>
-<<<<<<< HEAD
 						<!--
 						<input type="text" id="user_name" name="user_name" placeholder="Club Venue">
 						-->
@@ -38,13 +33,11 @@
 					<p class="float">
 						<label for="password"><i class="icon-eye-blocked"></i>Password</label>
 						<input type="password" id="user_password" name="pass" placeholder="Enter your password" class="showpassword">
-=======
 						<input type="text" id="user_name" name="user_name" placeholder="Club Venue">
 					</p>
 					<p class="float">
 						<label for="password"><i class="icon-eye-blocked"></i>Password</label>
 						<input type="password" id="user_password" name="user_password" placeholder="Password" class="showpassword">
->>>>>>> 903180e9da764f0c4079d2ebdcc55331b581302f
 					</p>
 					<p class="clearfix"> 
 						<input type="reset" class="log-btn" value="Cancel">  
@@ -56,11 +49,8 @@
 			
         </div>
 		<script type="text/javascript">
-<<<<<<< HEAD
 			/*$(function(){
-=======
 			$(function(){
->>>>>>> 903180e9da764f0c4079d2ebdcc55331b581302f
 				$("#login").click(function(){
 
 				var action = $(".form-login").attr('action');
@@ -114,7 +104,6 @@
 						$('.icon-eye-blocked').removeClass('icon-eye2');
 					}
 			    });
-<<<<<<< HEAD
 			});*/
 
 //NOTE: RIGHT HERE IS WHERE THE STUFF INVOLVING PARSE BEGINS!!! DO NOT EDIT IF YOU DON'T KNOW WHAT THE FUCK YOU ARE DOING!!!
@@ -128,11 +117,11 @@
 				alert("Please select a valid venue.");
 			}
 			Parse.initialize("OtIEGP5KKeYGnXvjIUKlqT3NSgQA3Sk043bEUCoC", "RAfPUOZdzNASmzND894zQ4uBaSjrA6hGq8IBxCXC");
-			var TestObject = Parse.Object.extend("TestObject");//the following lines are for testing parse sdk is set up correctly
+			/*var TestObject = Parse.Object.extend("TestObject");//the following lines are for testing parse sdk is set up correctly
 			var testObject = new TestObject();
 			testObject.save({foo: "bar"}).then(function(object) {
   			alert("yay! it worked");
-			});//testing if the sdk is set up correctly stops here
+			});//testing if the sdk is set up correctly stops here*/
 			Parse.User.logIn(username, document.getElementById('pass').value, {//this needs to happen on-click of login
   				success: function(user) {
     				alert("You successfully logged in!");
@@ -141,8 +130,6 @@
   				error: function(user, error) {
     				alert("We are sorry but that is an invalid venue/password combination. Please try again.");
   				}
-=======
->>>>>>> 903180e9da764f0c4079d2ebdcc55331b581302f
 			});
 		</script>
     </body>

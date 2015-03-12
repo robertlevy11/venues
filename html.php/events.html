@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+	</head>
+	<body>
+
+		<script>
+			//probably best to stick all of this in one function that occurs on click!!
+			Parse.initialize("OtIEGP5KKeYGnXvjIUKlqT3NSgQA3Sk043bEUCoC", "RAfPUOZdzNASmzND894zQ4uBaSjrA6hGq8IBxCXC");
+			//this portion will query for the club for the pointer
+			var query = new.Parse.query(Club);
+			query.equalTo("name", Parse.User.current().get("username"));
+			var club = query.get("objectId");
+			//this is the end of that query
+			if(){//check forms for all fields properly filled out; probably best to do this above!
+				var new_event = Parse.object.extend("Event");
+				new_event.set("approved", false);//this is how you set all values
+				new_event.set("club", club);
+				gameScore.save(null, {
+  					success: function(gameScore) {
+    					// Execute any logic that should take place after the object is saved.
+  					},
+  					error: function(gameScore, error) {
+    					// Execute any logic that should take place if the save fails.
+    					// error is a Parse.Error with an error code and message.
+    				}
+				});
+			}
+			else{
+				alert("All fields must be properly filled out.");//make this better
+			}
+		</script>
+	</body>
+</html>
