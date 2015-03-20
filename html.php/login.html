@@ -24,7 +24,7 @@
 						<input type="text" id="user_name" name="user_name" placeholder="Club Venue">
 						-->
 						<form>
-							<select size="1" id="slt_venue" name="venue">
+							<select size="1" id="user_name" name="venue">
 							<option value=""> - Select Your Venue - </option>
 							<option value="connorlee57@gmail.com"> Connor </option>
 							</select>
@@ -33,7 +33,7 @@
 					<p class="float">
 						<label for="password"><i class="icon-eye-blocked"></i>Password</label>
 						<input type="password" id="user_password" name="pass" placeholder="Enter your password" class="showpassword">
-						<input type="text" id="user_name" name="user_name" placeholder="Club Venue">
+						<!--<input type="text" id="user_name" name="user_name" placeholder="Club Venue">-->
 					</p>
 					<p class="float">
 						<label for="password"><i class="icon-eye-blocked"></i>Password</label>
@@ -122,7 +122,7 @@
 			testObject.save({foo: "bar"}).then(function(object) {
   			alert("yay! it worked");
 			});//testing if the sdk is set up correctly stops here*/
-			Parse.User.logIn(username, document.getElementById('pass').value, {//this needs to happen on-click of login
+			document.getElementById("login").onclick = Parse.User.logIn(username, document.getElementById('pass').value, {//this needs to happen on-click of login
   				success: function(user) {
     				alert("You successfully logged in!");
     				//put in link to next page
@@ -130,7 +130,7 @@
   				error: function(user, error) {
     				alert("We are sorry but that is an invalid venue/password combination. Please try again.");
   				}
-			});
+			}); 
 		</script>
     </body>
 </html>

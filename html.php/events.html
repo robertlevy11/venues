@@ -4,32 +4,96 @@
 		<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
 	</head>
 	<body>
+		<!--
+			need textbox for event description id= "description"
 
+			need form for date of text id = "date"
+
+
+			need form for num guests selection id = "numGuests"
+
+			need button for submit id = "submit"
+		-->
+		<p>
+			<label for="date">Select The Date of Your Event</label>
+			<input type="date" id="date" value="Select Date">
+		</p>
+		<p>
+			<label for="description">Please Describe Your Event</label>
+			<input type ="text" id="description" value="">
+		</p>
+		<p>
+			<label for="numGuests">Please Enter Your Desired Number of Guests</label>
+			<input type = "text" id="numGuests" value="15"
+		</p>
+		<p>
+			<input id="login" type="submit" name="submit" value="Log in">
+		</p>
 		<script>
+			function isfutureDate(value){
+				var now = new Date;
+				var target = new Date(value);
+				if(target.getFullYear() > now.getFullYear()){
+					return true;
+				}
+				else if(target.getFullYear() == now.getFullYear()){
+					if(target.getMonth() > now.getMonth() + 1){
+						return true;
+					}
+					else if(target.getMonth() == now.getMonth()){
+						return target.getDate() > now.getDate() + 14;
+					}
+					else{
+						return false;
+					}
+				}
+				else{
+					return false;
+				}
+			}
 			//probably best to stick all of this in one function that occurs on click!!
 			Parse.initialize("OtIEGP5KKeYGnXvjIUKlqT3NSgQA3Sk043bEUCoC", "RAfPUOZdzNASmzND894zQ4uBaSjrA6hGq8IBxCXC");
 			//this portion will query for the club for the pointer
 			var query = new.Parse.query(Club);
 			query.equalTo("name", Parse.User.current().get("username"));
 			var club = query.get("objectId");
+			var event_description = document.getElementById("description").value;
+			var guests_requested = document.getElementById("numGuests").value;
+			var date_selected = document.getElementById("date");
 			//this is the end of that query
-			if(){//check forms for all fields properly filled out; probably best to do this above!
-				var new_event = Parse.object.extend("Event");
-				new_event.set("approved", false);//this is how you set all values
-				new_event.set("club", club);
-				gameScore.save(null, {
-  					success: function(gameScore) {
+			var valid = true;
+			$("#login").click(function(){
+				if(guests_requested > 20){
+					valid = false;
+					alert("I'm sorry but right now we only offer maximum of 20 guests per event.");
+				}
+				if(!isfutureDate(date_selected)){
+					valid = false;
+					alert("Dates selected for events must be at least 1 week in the future.");
+				}
+				if(event_description == 'undefined'){
+					valid = false;
+					alert("Please provide a description of your event to aid users in selecting the venue which is right for them.");
+				}
+				if(valid){//check forms for all fields properly filled out; probably best to do this above!
+					var new_event = Parse.object.extend("Event");
+					new_event.set("approved", false);//this is how you set all values
+					new_event.set("description", 	event_description);
+					new_event.set("desiredNumGuests", 		Number(guests_requested));
+					new_event.set("time", date_selected);
+					new_event.set("club", club);
+					new_event.save(null, {
+  						success: function(new_event) {
     					// Execute any logic that should take place after the object is saved.
-  					},
-  					error: function(gameScore, error) {
+  						},
+  						error: function(new_event, error) {
     					// Execute any logic that should take place if the save fails.
     					// error is a Parse.Error with an error code and message.
-    				}
-				});
-			}
-			else{
-				alert("All fields must be properly filled out.");//make this better
-			}
+    						}
+						});
+					}
+				}
+			});
 		</script>
 	</body>
 </html>
